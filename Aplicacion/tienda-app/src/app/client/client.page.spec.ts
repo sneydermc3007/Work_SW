@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
+import { CardDataComponentModule } from '../components/card-data/card-data.module';
+import { ClientPage } from './client.page';
 
-import { MessageComponent } from './message.component';
-
-describe('MessageComponent', () => {
-  let component: MessageComponent;
-  let fixture: ComponentFixture<MessageComponent>;
+describe('ClientPage', () => {
+  let component: ClientPage;
+  let fixture: ComponentFixture<ClientPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MessageComponent ],
-      imports: [IonicModule.forRoot(), RouterModule.forRoot([])]
+      declarations: [ ClientPage ],
+      imports: [IonicModule.forRoot(), CardDataComponentModule, RouterModule.forRoot([])]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MessageComponent);
+    fixture = TestBed.createComponent(ClientPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

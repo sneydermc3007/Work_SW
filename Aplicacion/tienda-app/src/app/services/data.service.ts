@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export interface Message {
+export interface Data {
   fromName: string;
   subject: string;
   date: string;
@@ -12,7 +12,7 @@ export interface Message {
   providedIn: 'root'
 })
 export class DataService {
-  public messages: Message[] = [
+  public data: Data[] = [
     {
       fromName: 'Matt Chorsey',
       subject: 'New event: Trip to Vegas',
@@ -73,11 +73,11 @@ export class DataService {
 
   constructor() { }
 
-  public getMessages(): Message[] {
-    return this.messages;
+  public getData(): Data[] {
+    return this.data;
   }
 
-  public getMessageById(id: number): Message {
-    return this.messages[id];
+  public getDataById(id: number): Data {
+    return this.data[id];
   }
 }

@@ -1,21 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { MessageComponentModule } from './components/message/message.module';
 
-import { HomePage } from './home.page';
+import { CardDataComponent } from './card-data.component';
 
-describe('HomePage', () => {
-  let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+describe('CardDataComponent', () => {
+  let component: CardDataComponent;
+  let fixture: ComponentFixture<CardDataComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomePage ],
-      imports: [IonicModule.forRoot(), MessageComponentModule, RouterModule.forRoot([])]
+      declarations: [ CardDataComponent ],
+      imports: [IonicModule.forRoot(), RouterModule.forRoot([])]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HomePage);
+    fixture = TestBed.createComponent(CardDataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

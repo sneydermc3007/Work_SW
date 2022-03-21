@@ -14,12 +14,12 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">
-        Clientes 3
+        Clientes
       </ion-title>
     </ion-toolbar>
   </ion-header>
   
   <ion-list>
-    <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
+    <app-card-data *ngFor="let data of getData()" [data]="data"></app-card-data>
   </ion-list>
 </ion-content>
