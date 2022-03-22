@@ -18,11 +18,12 @@ export class DetailClientPage implements OnInit {
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     this.data = this.dataService.getDataById(parseInt(id, 10));
+    console.log(this.data.invoice);
   }
 
   getBackButtonText() {
     const win = window as any;
     const mode = win && win.Ionic && win.Ionic.mode;
-    return this.data.fromName;
+    return this.data.name;
   }
 }

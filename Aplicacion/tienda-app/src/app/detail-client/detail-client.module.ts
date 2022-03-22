@@ -6,13 +6,15 @@ import { DetailClientPage } from './detail-client.page';
 import { IonicModule } from '@ionic/angular';
 
 import { DetailClientPageRoutingModule } from './detail-client-routing.module';
+import { CardDataComponentModule } from '../components/card-data/card-data.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DetailClientPageRoutingModule
+    DetailClientPageRoutingModule,
+    CardDataComponentModule
   ],
   declarations: [DetailClientPage]
 })

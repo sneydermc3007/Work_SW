@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Data } from '../../services/data.service';
+import { Data, Invoice } from '../../services/data.service';
 
 @Component({
   selector: 'app-card-data',
@@ -7,8 +7,9 @@ import { Data } from '../../services/data.service';
   styleUrls: ['./card-data.component.scss'],
 })
 export class CardDataComponent implements OnInit {
-  @Input() data: Data;
-
+  @Input() data?: Data;
+  @Input() invoice?: Invoice;
+  
   constructor() { }
 
   ngOnInit() {}

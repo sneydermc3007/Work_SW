@@ -1,11 +1,20 @@
 import { Injectable } from '@angular/core';
 
 export interface Data {
-  fromName: string;
-  subject: string;
-  date: string;
   id: number;
-  read: boolean;
+  name: string;
+  invoice: Invoice[];
+}
+
+export interface Invoice {
+  date: string;
+  items: Item[];
+}
+
+export interface Item {
+  product: string;
+  quantity: number;
+  total:number;
 }
 
 @Injectable({
@@ -14,61 +23,188 @@ export interface Data {
 export class DataService {
   public data: Data[] = [
     {
-      fromName: 'Matt Chorsey',
-      subject: 'New event: Trip to Vegas',
-      date: '9:32 AM',
       id: 0,
-      read: false
+      name: 'Camila Martínez',
+      invoice: [
+        {
+          date: 'Factura 1 de mayo 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        },
+        {
+          date: 'Factura 3 de julio 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        }
+      ],
     },
     {
-      fromName: 'Lauren Ruthford',
-      subject: 'Long time no chat',
-      date: '6:12 AM',
       id: 1,
-      read: false
+      name: 'Claudia Guarin',
+      invoice: [
+        {
+          date: 'Factura 1 de enero 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        },
+        {
+          date: 'Factura 5 de febrero 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        }
+      ],
     },
     {
-      fromName: 'Jordan Firth',
-      subject: 'Report Results',
-      date: '4:55 AM',
       id: 2,
-      read: false
+      name: 'Isabela Ospina',
+      invoice: [
+        {
+          date: 'Factura 2 de2 marzo 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        },
+        {
+          date: 'Factura 3 de0 abril 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        }
+      ],
     },
     {
-      fromName: 'Bill Thomas',
-      subject: 'The situation',
-      date: 'Yesterday',
       id: 3,
-      read: false
+      name: 'Laura Ramirez',
+      invoice: [
+        {
+          date: 'Factura 7 de diciembre 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        },
+        {
+          date: 'Factura 2 de8 octubre 2001',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        }
+      ],
     },
     {
-      fromName: 'Joanne Pollan',
-      subject: 'Updated invitation: Swim lessons',
-      date: 'Yesterday',
       id: 4,
-      read: false
+      name: 'Luisa Gil',
+      invoice: [
+        {
+          date: 'Factura 1 de0 marzo 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        },
+        {
+          date: 'Factura 1 de5 marzo 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        }
+      ],
     },
     {
-      fromName: 'Andrea Cornerston',
-      subject: 'Last minute ask',
-      date: 'Yesterday',
       id: 5,
-      read: false
+      name: 'Matias Salazar',
+      invoice: [
+        {
+          date: 'Factura 2 de2 mayo 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        },
+        {
+          date: 'Factura 3 de1 diciembre 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        }
+      ],
     },
     {
-      fromName: 'Moe Chamont',
-      subject: 'Family Calendar - Version 1',
-      date: 'Last Week',
       id: 6,
-      read: false
-    },
-    {
-      fromName: 'Kelly Richardson',
-      subject: 'Placeholder Headhots',
-      date: 'Last Week',
-      id: 7,
-      read: false
+      name: 'Sebastian Lopez',
+      invoice: [
+        {
+          date: 'Factura 6 de junio 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        },
+        {
+          date: 'Factura 8 de agosto 2019',
+          items: [
+            {
+              product: 'Producto 1',
+              quantity: 1,
+              total:1000
+            }
+          ],
+        }
+      ],
     }
+    
   ];
 
   constructor() { }
