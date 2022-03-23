@@ -14,7 +14,7 @@ export interface Invoice {
 export interface Item {
   product: string;
   quantity: number;
-  total:number;
+  total: number;
 }
 
 @Injectable({
@@ -30,9 +30,9 @@ export class DataService {
           date: 'Factura 1 de mayo 2019',
           items: [
             {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
+              product: 'Cuaderno',
+              quantity: 2,
+              total: 10000
             }
           ],
         },
@@ -40,9 +40,9 @@ export class DataService {
           date: 'Factura 3 de julio 2019',
           items: [
             {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
+              product: 'Borrador',
+              quantity: 3,
+              total: 3000
             }
           ],
         }
@@ -53,12 +53,12 @@ export class DataService {
       name: 'Claudia Guarin',
       invoice: [
         {
-          date: 'Factura 1 de enero 2019',
+          date: 'Factura 1 de enero 2018',
           items: [
             {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
+              product: 'Bafles',
+              quantity: 2,
+              total: 100000
             }
           ],
         },
@@ -66,9 +66,9 @@ export class DataService {
           date: 'Factura 5 de febrero 2019',
           items: [
             {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
+              product: 'Audifonos',
+              quantity: 4,
+              total: 25000
             }
           ],
         }
@@ -79,22 +79,22 @@ export class DataService {
       name: 'Isabela Ospina',
       invoice: [
         {
-          date: 'Factura 2 de2 marzo 2019',
+          date: 'Factura 2 de marzo 2022',
           items: [
             {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
+              product: 'Camiseta',
+              quantity: 10,
+              total: 200000
             }
           ],
         },
         {
-          date: 'Factura 3 de0 abril 2019',
+          date: 'Factura 3 de marzo 2022',
           items: [
             {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
+              product: 'Pantalon',
+              quantity: 3,
+              total: 235900
             }
           ],
         }
@@ -105,22 +105,12 @@ export class DataService {
       name: 'Laura Ramirez',
       invoice: [
         {
-          date: 'Factura 7 de diciembre 2019',
+          date: 'Factura 7 de diciembre 2015',
           items: [
             {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
-            }
-          ],
-        },
-        {
-          date: 'Factura 2 de8 octubre 2001',
-          items: [
-            {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
+              product: 'Foco',
+              quantity: 5,
+              total: 15000
             }
           ],
         }
@@ -131,22 +121,22 @@ export class DataService {
       name: 'Luisa Gil',
       invoice: [
         {
-          date: 'Factura 1 de0 marzo 2019',
+          date: 'Factura 1 de junio 2021',
           items: [
             {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
+              product: 'Video Beam',
+              quantity: 2,
+              total: 305000
             }
           ],
         },
         {
-          date: 'Factura 1 de5 marzo 2019',
+          date: 'Factura 1 de junio 2021',
           items: [
             {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
+              product: 'Celular',
+              quantity: 4,
+              total: 900000
             }
           ],
         }
@@ -157,22 +147,12 @@ export class DataService {
       name: 'Matias Salazar',
       invoice: [
         {
-          date: 'Factura 2 de2 mayo 2019',
+          date: 'Factura 22 de abril 2016',
           items: [
             {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
-            }
-          ],
-        },
-        {
-          date: 'Factura 3 de1 diciembre 2019',
-          items: [
-            {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
+              product: 'Termo',
+              quantity: 10,
+              total: 58350
             }
           ],
         }
@@ -183,28 +163,27 @@ export class DataService {
       name: 'Sebastian Lopez',
       invoice: [
         {
-          date: 'Factura 6 de junio 2019',
+          date: 'Factura 7 de agosto 2020',
           items: [
             {
-              product: 'Producto 1',
-              quantity: 1,
-              total:1000
+              product: 'Locion',
+              quantity: 2,
+              total: 70000
             }
           ],
         },
         {
-          date: 'Factura 8 de agosto 2019',
+          date: 'Factura 22 de noviembre 2020',
           items: [
             {
-              product: 'Producto 1',
+              product: 'Desodorante',
               quantity: 1,
-              total:1000
+              total: 90000
             }
           ],
         }
       ],
     }
-    
   ];
 
   constructor() { }
