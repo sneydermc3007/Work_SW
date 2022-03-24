@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService, Data } from '../services/data.service';
+import { IonAccordionGroup } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail-client',
@@ -9,6 +10,7 @@ import { DataService, Data } from '../services/data.service';
 })
 export class DetailClientPage implements OnInit {
   public data: Data;
+  @ViewChild(IonAccordionGroup, { static: true }) accordionGroup: IonAccordionGroup;
 
   constructor(
     private dataService: DataService,

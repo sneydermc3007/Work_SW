@@ -33,6 +33,11 @@ export class DataService {
               product: 'Cuaderno',
               quantity: 2,
               total: 10000
+            },
+            {
+              product: 'Block',
+              quantity: 2,
+              total: 15000
             }
           ],
         },

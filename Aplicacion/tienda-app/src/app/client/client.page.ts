@@ -7,14 +7,7 @@ import { DataService, Data } from '../services/data.service';
   styleUrls: ['client.page.scss'],
 })
 export class ClientPage {
-  constructor(private dataService: DataService,
-    ) {}
-
-  refresh(ev) {
-    setTimeout(() => {
-      ev.detail.complete();
-    }, 3000);
-  }
+  constructor(private dataService: DataService) {}
 
   getData(): Data[] {
     return this.dataService.getData();
