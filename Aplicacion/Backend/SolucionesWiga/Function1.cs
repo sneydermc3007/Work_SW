@@ -15,7 +15,7 @@ namespace SolucionesWiga
     {
         [FunctionName("HttpExample")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "v1/clientes")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "v1/clientes")] HttpRequest req,
             ILogger log)
         {
             Item item1 = new Item("Cuaderno", 2, 10000);

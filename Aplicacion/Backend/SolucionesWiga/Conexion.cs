@@ -11,11 +11,22 @@ namespace SolucionesWiga
     {
         public static MySqlConnection ObtenerConexion()
         {
-
             MySqlConnection conectar = new MySqlConnection("server=127.0.0.1; database=solucioneswiga; Uid=root; pwd=;");
+            
+            String query  = "SELECT * FROM cliente";
 
-            conectar.Open();
+            MySqlCommand commandDatabase = new MySqlCommand(query, conectar);
+            
+            try
+            {
+                conectar.Open();
+                MySqlDataReader reader = commandDatabase.ExecuteReader();
 
+            }
+            catch (Exception ex){
+                Console.WriteLine("Error en la ejecucion del query" + ex.Message);
+            }
+            
             return conectar;
         }
     }

@@ -36,7 +36,7 @@ export class DataService {
             },
             {
               product: 'Block',
-              quantity: 2,
+              quantity: 1,
               total: 15000
             }
           ],
