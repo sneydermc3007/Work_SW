@@ -9,18 +9,5 @@
 <ion-content [fullscreen]="true">
   
   <ion-list>
-    <app-card-data *ngFor="let data of getData()" [data]="data"></app-card-data>
+    <app-card-data *ngFor="let data of clientes" [data]="data"></app-card-data>
   </ion-list>
-
-  <ion-list>
-    <ion-item *ngFor="let usuario of usuarios">
-      <ion-avatar slot="start">
-        <img [src]="usuario.picture.medium">
-      </ion-avatar>
-     <ion-label>
-        <h2>{{ clientes.id }}</h2>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-  <ion-button expand="block" (click) = "cargarClientes()">Cargar Usuarios</ion-button>
-</ion-content>

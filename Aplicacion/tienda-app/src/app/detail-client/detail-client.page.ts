@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService, Data } from '../services/data.service';
+import { DataService } from '../services/data.service';
 import { IonAccordionGroup } from '@ionic/angular';
+import { Data } from '../interfaces/data.interface';
 
 @Component({
   selector: 'app-detail-client',
