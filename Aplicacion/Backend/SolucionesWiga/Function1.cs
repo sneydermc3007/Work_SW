@@ -15,7 +15,7 @@ namespace SolucionesWiga
     public static class Function1
     {
         [FunctionName("HttpExample")]
-        public static IActionResult Run(
+        public static async Task<IActionResult> RunAsync(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "v1/clientes")] HttpRequest req,
             ILogger log)
 
@@ -29,16 +29,33 @@ namespace SolucionesWiga
                 SslMode = MySqlSslMode.Required,
             };
 
-            // El error que se estaba presentando al momento de usar el builder es por azure
+            // El error que se estaba presentando al poner los datos de azure
             using (var conn = new MySqlConnection("Server=127.0.0.1;Port=3306;Database=solucioneswiga;Uid=root;password="))
             {
                 Console.WriteLine("Opening connection0");
                 conn.Open();
                 
-                Console.WriteLine("Opening connection1");
                 using (var command = conn.CreateCommand())
                 {
-                    Console.WriteLine("Opening connection2");
+                    command.CommandText = "SELECT * FROM cliente";
+
+                    Cliente obj_cliente = new();
+                    Factura obj_factura = new();
+                    Articulo obj_articulo = new();
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            Console.WriteLine(string.Format(
+                                "Reading from table=({0}, {1})",
+                                reader.GetInt32(0),
+                                reader.GetString(1)));
+                        }
+
+                    }
+
+
                 }
             }
 

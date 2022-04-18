@@ -27,7 +27,7 @@ namespace SolucionesWiga
 
                 using (var command = conn.CreateCommand()) {
 
-                    command.CommandText = "SELECT cliente.nombre, factura.fecha_compra, producto.nombre, detalle_factura.cantidad, producto.precio" +
+                    command.CommandText = "SELECT cliente.idClientes ,cliente.nombre, factura.fecha_compra, producto.nombre, detalle_factura.cantidad, producto.precio" +
                         "FROM cliente, factura, detalle_factura, producto" +
                         "WHERE cliente.idClientes = factura.id_cliente_fk" +
                         "AND factura.numero = detalle_factura.numero_factura_fk" +
