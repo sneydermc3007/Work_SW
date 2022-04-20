@@ -32,12 +32,16 @@ namespace SolucionesWiga
             // El error que se estaba presentando al poner los datos de azure
             using (var conn = new MySqlConnection("Server=127.0.0.1;Port=3306;Database=solucioneswiga;Uid=root;password="))
             {
-                Console.WriteLine("Opening connection0");
+                Console.WriteLine("Conexion abierta");
                 conn.Open();
                 
                 using (var command = conn.CreateCommand())
                 {
-                    command.CommandText = "SELECT * FROM cliente";
+                    command.CommandText = @"SELECT cliente.idClientes ,cliente.nombre, factura.fecha_compra, producto.nombre, detalle_factura.cantidad, producto.precio 
+                                            FROM cliente, factura, detalle_factura, producto 
+                                                WHERE cliente.idClientes = factura.id_cliente_fk 
+                                                    AND factura.numero = detalle_factura.numero_factura_fk 
+                                                        AND detalle_factura.id_producto_fk = producto.id_producto";
 
                     Cliente obj_cliente = new();
                     Factura obj_factura = new();
@@ -48,9 +52,14 @@ namespace SolucionesWiga
                         while (await reader.ReadAsync())
                         {
                             Console.WriteLine(string.Format(
-                                "Reading from table=({0}, {1})",
+                                "Reading from table=({0}, {1}, {2}, {3}, {4}, {5}",
                                 reader.GetInt32(0),
-                                reader.GetString(1)));
+                                reader.GetString(1),
+                                reader.GetDateTime(2),
+                                reader.GetString(3),
+                                reader.GetInt32(4),
+                                reader.GetDouble(5)
+                                ));
                         }
 
                     }
