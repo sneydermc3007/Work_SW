@@ -10,5 +10,18 @@ namespace SolucionesWiga
     {
         public DateTime date { get; set; }
         public List<Articulo> articulos { get; set; }
+
+        public Factura()
+        {
+           
+        }
+
+        public Factura(DateTime date, List<Articulo> articulos)
+        {
+            this.date = date;
+            this.articulos = articulos;
+
+            Console.WriteLine("\tFecha: " + date);
+        }
     }
 }

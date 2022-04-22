@@ -32,8 +32,8 @@ namespace SolucionesWiga
             // El error que se estaba presentando al poner los datos de azure
             using (var conn = new MySqlConnection("Server=127.0.0.1;Port=3306;Database=solucioneswiga;Uid=root;password="))
             {
-                Console.WriteLine("Conexion abierta");
                 conn.Open();
+                Console.WriteLine("Conexion abierta");
                 
                 using (var command = conn.CreateCommand())
                 {
@@ -51,12 +51,7 @@ namespace SolucionesWiga
                     {
                         while (await reader.ReadAsync())
                         {
-                            //Instanciando los clases
-                                //Cliente obj_cliente = new();
-                                //Factura obj_factura = new();
-                                //Articulo obj_articulo = new();
 
-                            // Recuperando las variables
                             Console.WriteLine(string.Format(
                                 "Reading from table=({0}, {1}, {2}, {3}, {4}, {5}",
                                 reader.GetInt32(0),
@@ -67,42 +62,38 @@ namespace SolucionesWiga
                                 reader.GetDouble(5)
                                 ));
 
-                            // Asignando datos a las variables
-                                obj_articulo.producto = reader.GetString(3);
-                                obj_articulo.cantidad = reader.GetInt32(4);
-                                obj_articulo.total = reader.GetDouble(5);
+                            obj_articulo.producto = reader.GetString(3);
+                            obj_articulo.cantidad = reader.GetInt32(4);
+                            obj_articulo.total = reader.GetDouble(5);
+                            obj_factura.date = reader.GetDateTime(2);                           
+                            obj_cliente.id = reader.GetInt32(0);
+                            obj_cliente.name = reader.GetString(1);
 
-                                obj_factura.date = reader.GetDateTime(2);
-                            
-                                obj_cliente.id = reader.GetInt32(0);
-                                obj_cliente.name = reader.GetString(1);
+                            //--------------- Pruebas de envio --------------------
+                            obj_articulo = new Articulo(obj_articulo.producto, obj_articulo.cantidad, obj_articulo.total);
+                            List<Articulo> articulos = new List<Articulo> { obj_articulo };
 
-                                //Console.WriteLine("Prueba ap: " + obj_articulo.producto + " ac: " + obj_articulo.cantidad + " at: " + obj_articulo.total + " fd: " + obj_factura.date + " ci: " + obj_cliente.id + " cn: " + obj_cliente.name);
-                                Console.WriteLine("\n");
+                            obj_factura = new Factura(obj_factura.date, articulos);
+                            List<Factura> factura_Objeto = new List<Factura> { obj_factura };
+
+                            obj_cliente = new Cliente(obj_cliente.id, obj_cliente.name, factura_Objeto);
+
+                            Console.WriteLine("\n");
                         }
-
                     }
-
-
                 }
             }
 
-            //Item item1 = new Item("Cuaderno", 2, 10000);
-            //List<Item> items = new List<Item> { item1 };
+            //Articulo objeto_retorno_articulo = new Articulo("Cuaderno", 2, 10000);
+            //List<Articulo> articulos = new List<Articulo> { objeto_retorno_articulo };
 
-            //Item item3 = new Item("Borrador", 3, 3000);
-            //List<Item> items_2 = new List<Item> { item3 };
+            //Factura objeto_retorno_factura = new Factura(System.DateTime.Today, articulos);
+            //List<Factura> facturaObj = new List<Factura> { objeto_retorno_factura };
 
-            //Invoice invoice1 = new Invoice("Factura 1 de mayo 2019", items);
-            //Invoice invoice_2 = new Invoice("Factura 3 de julio 2019", items_2);
+            //Cliente objeto_retorno_cliente = new Cliente(0, "Camila Cardeño", facturaObj);
 
-            //List<Invoice> invoiceObj = new List<Invoice> { invoice1, invoice_2 };
-
-            //Client client = new Client(0, "Camila Martínez", invoiceObj);
-
-            //List<Client> clientsList = new List<Client> { client };
-
-            //var response = new { clients = clientsList };
+            //List<Cliente> listaClientes = new List<Cliente> { objeto_retorno_cliente };
+            //var response = new { clientes = listaClientes };
 
             Test myTest = new();
             var response2 = new { test = myTest.texto };

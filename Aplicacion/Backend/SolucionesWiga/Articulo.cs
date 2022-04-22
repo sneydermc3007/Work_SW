@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +8,23 @@ namespace SolucionesWiga
 {
     public class Articulo
     {
-        public String producto { get; set; }
+        public string producto { get; set; }
         public int cantidad { get; set; }
         public double total { get; set; }
+
+        public Articulo()
+        {
+
+        }
+
+        public Articulo(string producto, int cantidad, double total)
+        {
+            this.producto = producto;
+            this.cantidad = cantidad;
+            this.total = total;
+
+            Console.WriteLine("\tProducto: " + producto);
+        }
+
     }
 }
