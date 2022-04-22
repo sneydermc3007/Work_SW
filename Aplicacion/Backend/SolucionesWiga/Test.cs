@@ -5,5 +5,5 @@ using System.Text;
 using System.Threading.Tasks;
 
 public class Test {
-    public String texto = "Hola MUndo";
+    public String texto = "OK";
 }

@@ -8,7 +8,7 @@ namespace SolucionesWiga
 {
     public class Factura
     {
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public List<Articulo> articulos { get; set; }
     }
 }

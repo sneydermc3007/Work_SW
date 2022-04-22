@@ -10,6 +10,6 @@ namespace SolucionesWiga
     {
         public String producto { get; set; }
         public int cantidad { get; set; }
-        public int total { get; set; }
+        public double total { get; set; }
     }
 }

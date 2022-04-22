@@ -51,6 +51,12 @@ namespace SolucionesWiga
                     {
                         while (await reader.ReadAsync())
                         {
+                            //Instanciando los clases
+                                //Cliente obj_cliente = new();
+                                //Factura obj_factura = new();
+                                //Articulo obj_articulo = new();
+
+                            // Recuperando las variables
                             Console.WriteLine(string.Format(
                                 "Reading from table=({0}, {1}, {2}, {3}, {4}, {5}",
                                 reader.GetInt32(0),
@@ -60,6 +66,19 @@ namespace SolucionesWiga
                                 reader.GetInt32(4),
                                 reader.GetDouble(5)
                                 ));
+
+                            // Asignando datos a las variables
+                                obj_articulo.producto = reader.GetString(3);
+                                obj_articulo.cantidad = reader.GetInt32(4);
+                                obj_articulo.total = reader.GetDouble(5);
+
+                                obj_factura.date = reader.GetDateTime(2);
+                            
+                                obj_cliente.id = reader.GetInt32(0);
+                                obj_cliente.name = reader.GetString(1);
+
+                                //Console.WriteLine("Prueba ap: " + obj_articulo.producto + " ac: " + obj_articulo.cantidad + " at: " + obj_articulo.total + " fd: " + obj_factura.date + " ci: " + obj_cliente.id + " cn: " + obj_cliente.name);
+                                Console.WriteLine("\n");
                         }
 
                     }
@@ -67,11 +86,6 @@ namespace SolucionesWiga
 
                 }
             }
-
-            //Cliente myClient = new();
-            //Factura myInvoice = new();
-            //Articulo myItem = new();
-            //AzureConexion myConexion = new();
 
             //Item item1 = new Item("Cuaderno", 2, 10000);
             //List<Item> items = new List<Item> { item1 };
