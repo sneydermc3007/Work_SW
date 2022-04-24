@@ -11,7 +11,7 @@
     <ion-accordion-group *ngFor="let invoice of data.factura">
       <ion-accordion value="invoice.date">
         <ion-item slot="header">
-          <ion-label>{{ invoice.date }}</ion-label>
+          <ion-label>{{ invoice.date | date:"MMM d, YYYY"}}</ion-label>
         </ion-item>
     
         <ion-list slot="content">

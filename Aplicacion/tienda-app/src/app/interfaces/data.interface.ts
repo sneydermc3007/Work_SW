@@ -5,7 +5,7 @@ export interface Data {
   }
   
   export interface Invoice {
-    date: string;
+    date: Date;
     articulos: Item[];
   }
   
