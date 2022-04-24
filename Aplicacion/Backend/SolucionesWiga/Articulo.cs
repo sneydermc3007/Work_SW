@@ -22,8 +22,6 @@ namespace SolucionesWiga
             this.producto = producto;
             this.cantidad = cantidad;
             this.total = total;
-
-            Console.WriteLine("\tProducto: " + producto);
         }
 
     }

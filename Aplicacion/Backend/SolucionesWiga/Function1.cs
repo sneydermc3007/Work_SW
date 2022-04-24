@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using System.Linq;
 
 namespace SolucionesWiga
 {
@@ -18,7 +19,6 @@ namespace SolucionesWiga
         public static async Task<IActionResult> RunAsync(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "v1/clientes")] HttpRequest req,
             ILogger log)
-
         {
             var builder = new MySqlConnectionStringBuilder
             {
@@ -33,7 +33,6 @@ namespace SolucionesWiga
             using (var conn = new MySqlConnection("Server=127.0.0.1;Port=3306;Database=solucioneswiga;Uid=root;password="))
             {
                 conn.Open();
-                Console.WriteLine("Conexion abierta");
                 
                 using (var command = conn.CreateCommand())
                 {
@@ -43,15 +42,19 @@ namespace SolucionesWiga
                                                     AND factura.numero = detalle_factura.numero_factura_fk 
                                                         AND detalle_factura.id_producto_fk = producto.id_producto";
 
-                    Cliente obj_cliente = new();
-                    Factura obj_factura = new();
-                    Articulo obj_articulo = new();
-
                     using (var reader = await command.ExecuteReaderAsync())
                     {
+                        List<Cliente> listaClientes = new ();
+                        List<Cliente> listaClientesTemp = new ();
+
                         while (await reader.ReadAsync())
                         {
-
+                            //Posicion 0 es id
+                            //Posicion 1 es name del cliente
+                            //Posicion 2 es Fecha de compras
+                            //Posicion 3 es nombre del Podructo
+                            //Posicion 4 es cantidad
+                            //Posicion 5 es total
                             Console.WriteLine(string.Format(
                                 "Reading from table=({0}, {1}, {2}, {3}, {4}, {5}",
                                 reader.GetInt32(0),
@@ -62,42 +65,74 @@ namespace SolucionesWiga
                                 reader.GetDouble(5)
                                 ));
 
-                            obj_articulo.producto = reader.GetString(3);
-                            obj_articulo.cantidad = reader.GetInt32(4);
-                            obj_articulo.total = reader.GetDouble(5);
-                            obj_factura.date = reader.GetDateTime(2);                           
-                            obj_cliente.id = reader.GetInt32(0);
-                            obj_cliente.name = reader.GetString(1);
+                            Articulo obj_articulo = new(reader.GetString(3), reader.GetInt32(4), reader.GetDouble(5));
+                            Factura obj_factura = new(reader.GetDateTime(2), new List<Articulo> { obj_articulo });
+                            Cliente obj_cliente = new(reader.GetInt32(0), reader.GetString(1), new List<Factura> { obj_factura });
 
-                            //--------------- Pruebas de envio --------------------
-                            obj_articulo = new Articulo(obj_articulo.producto, obj_articulo.cantidad, obj_articulo.total);
-                            List<Articulo> articulos = new List<Articulo> { obj_articulo };
+                            if (listaClientes.Count == 0)
+                            {
+                                listaClientes.Add(obj_cliente);
+                                listaClientesTemp.Add(obj_cliente);
+                            } 
+                            else
+                            {
+                                var nuevoCliente = true;
+                                foreach (Cliente cliente in listaClientes)
+                                {
+                                    if (cliente.id == obj_cliente.id)
+                                    {
+                                        nuevoCliente = false;
+                                    }
+                                }
+                                if (nuevoCliente)
+                                {
+                                    listaClientes.Add(obj_cliente);
+                                } 
+                                else
+                                {
+                                    for (int i = 0; i < listaClientes.Count; i++)
+                                    {
+                                        if (listaClientes[i].id == obj_cliente.id)
+                                        {
+                                            var facturas = listaClientes[i].factura;
+                                            Console.WriteLine("\t ya esta en la lista: " + obj_cliente.name);
 
-                            obj_factura = new Factura(obj_factura.date, articulos);
-                            List<Factura> factura_Objeto = new List<Factura> { obj_factura };
-
-                            obj_cliente = new Cliente(obj_cliente.id, obj_cliente.name, factura_Objeto);
-
-                            Console.WriteLine("\n");
+                                            var nuevaFactura = true;
+                                            foreach (Factura factura in facturas)
+                                            {
+                                                if (factura.date == obj_factura.date)
+                                                {
+                                                    nuevaFactura = false;
+                                                }
+                                            }
+                                            if (nuevaFactura)
+                                            {
+                                                Console.WriteLine("\t Otra factura");
+                                                facturas.Add(obj_factura);
+                                            }
+                                            else
+                                            {
+                                                var articulos = new List<Articulo>();
+                                                for (int j = 0; j < facturas.Count; j++)
+                                                {
+                                                    if (facturas[j].date == obj_factura.date)
+                                                    {
+                                                        Console.WriteLine("\t Esta fecha ya tiene una factura");
+                                                        articulos.Add(obj_articulo);
+                                                        facturas[j].articulos.Add(obj_articulo);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
+                        var response = new { clientes = listaClientes };
+                        return new OkObjectResult(response);
                     }
                 }
             }
-
-            //Articulo objeto_retorno_articulo = new Articulo("Cuaderno", 2, 10000);
-            //List<Articulo> articulos = new List<Articulo> { objeto_retorno_articulo };
-
-            //Factura objeto_retorno_factura = new Factura(System.DateTime.Today, articulos);
-            //List<Factura> facturaObj = new List<Factura> { objeto_retorno_factura };
-
-            //Cliente objeto_retorno_cliente = new Cliente(0, "Camila Cardeño", facturaObj);
-
-            //List<Cliente> listaClientes = new List<Cliente> { objeto_retorno_cliente };
-            //var response = new { clientes = listaClientes };
-
-            Test myTest = new();
-            var response2 = new { test = myTest.texto };
-            return new OkObjectResult(response2);
         }
     }
 }

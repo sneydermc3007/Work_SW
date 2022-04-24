@@ -20,8 +20,6 @@ namespace SolucionesWiga
         {
             this.date = date;
             this.articulos = articulos;
-
-            Console.WriteLine("\tFecha: " + date);
         }
     }
 }

@@ -22,9 +22,12 @@ namespace SolucionesWiga
             this.id = id;
             this.name = name;
             this.factura = factura;
-
-            Console.WriteLine("\tNombre: " + name);
         }
 
+        public Cliente(int id, string name)
+        {
+            this.id = id;
+            this.name = name;
+        }
     }
 }
