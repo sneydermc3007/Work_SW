@@ -21,7 +21,7 @@ export class DetailClientPage implements OnInit {
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     this.data = this.dataService.getDataById(parseInt(id, 10));
-    console.log(this.data.invoice);
+    console.log(this.data);
   }
 
   getBackButtonText() {

@@ -19,11 +19,11 @@ export class DataService {
     };
 
     const response = await Http.get(options);
-    this.data = response.data.clients
+    this.data = response.data.clientes
     return response
   }
 
   public getDataById(id: number): Data {
-    return this.data[id];
+    return this.data[id-1];
   }
 }
