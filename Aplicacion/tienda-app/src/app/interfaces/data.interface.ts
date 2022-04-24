@@ -1,16 +1,16 @@
 export interface Data {
     id: number;
     name: string;
-    invoice: Invoice[];
+    factura: Invoice[];
   }
   
   export interface Invoice {
-    date: string;
-    items: Item[];
+    date: Date;
+    articulos: Item[];
   }
   
   export interface Item {
-    product: string;
-    quantity: number;
+    producto: string;
+    cantidad: number;
     total: number;
   }

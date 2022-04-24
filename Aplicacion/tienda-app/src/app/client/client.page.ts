@@ -16,10 +16,7 @@ export class ClientPage implements OnInit{
   ngOnInit() {
     this.dataService.loadUsers().then(
       (res: any) => {
-        //this.clientes = res.results;
-        console.log("OK");
-        console.log(res.data.clients);
-        this.clientes = res.data.clients
+        this.clientes = res.data.clientes
       },
     );
   }

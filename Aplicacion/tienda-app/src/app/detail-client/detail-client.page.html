@@ -8,21 +8,22 @@
 
 <ion-content [fullscreen]="true" *ngIf="data">
   <ion-list>
-    <ion-accordion-group *ngFor="let invoice of data.invoice">
+    <ion-accordion-group *ngFor="let invoice of data.factura">
       <ion-accordion value="invoice.date">
         <ion-item slot="header">
-          <ion-label>{{ invoice.date }}</ion-label>
+          <ion-label>{{ invoice.date | date:"MMM d, YYYY"}}</ion-label>
         </ion-item>
     
         <ion-list slot="content">
-          <ion-item *ngFor="let item of invoice.items">
-            <ion-label>{{ item.product}}</ion-label>
-              <ion-item *ngFor="let item of invoice.items"> 
-                <ion-label>{{ item.quantity }}</ion-label>
-              </ion-item>
-              <ion-item *ngFor="let item of invoice.items">
-                <ion-label>{{ item.total }}</ion-label>
-              </ion-item>
+          <ion-item>
+            <ion-label>Producto</ion-label>
+            <ion-label>Cantidad</ion-label>
+            <ion-label>Precio</ion-label>
+          </ion-item>
+          <ion-item *ngFor="let item of invoice.articulos">
+            <ion-label>{{ item.producto}}</ion-label>
+            <ion-label>{{ item.cantidad }}</ion-label>
+            <ion-label>{{ item.total }}</ion-label>
           </ion-item>
         </ion-list>
       </ion-accordion>
