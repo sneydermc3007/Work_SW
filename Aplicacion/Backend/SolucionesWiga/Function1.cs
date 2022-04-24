@@ -23,14 +23,13 @@ namespace SolucionesWiga
             var builder = new MySqlConnectionStringBuilder
             {
                 Server = "solucioneswiga2018snake-mc.mysql.database.azure.com",
-                Database = "WigaSolucionesAzure",
+                Database = "solucioneswiga",
                 UserID = "SneyderSnake28@solucioneswiga2018snake-mc",
                 Password = "UCLA sneyder#20",
                 SslMode = MySqlSslMode.Required,
             };
 
-            // El error que se estaba presentando al poner los datos de azure
-            using (var conn = new MySqlConnection("Server=127.0.0.1;Port=3306;Database=solucioneswiga;Uid=root;password="))
+            using (var conn = new MySqlConnection(builder.ConnectionString))
             {
                 conn.Open();
                 
